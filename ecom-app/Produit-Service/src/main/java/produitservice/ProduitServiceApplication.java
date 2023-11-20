@@ -21,5 +21,8 @@ public class ProduitServiceApplication implements CommandLineRunner {
         produitRepo.save(new Produit(null, "produit1", 100));
         produitRepo.save(new Produit(null, "produit2", 200));
         produitRepo.save(new Produit(null, "produit3", 300));
+        produitRepo.save(new Produit(null, "produit4", 500));
+        produitRepo.save(new Produit(null, "produit5", 600));
+        produitRepo.save(new Produit(null, "produit6", 700));
     }
 }

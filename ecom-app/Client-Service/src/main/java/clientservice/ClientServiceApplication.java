@@ -21,5 +21,8 @@ public class ClientServiceApplication implements CommandLineRunner{
     clientRepo.save(new Client(null, "client1", "test1", "test1"));
     clientRepo.save(new Client(null, "client2", "test2", "test2"));
     clientRepo.save(new Client(null, "client3", "test3", "test3"));
+    clientRepo.save(new Client(null, "client4", "test4", "test4"));
+    clientRepo.save(new Client(null, "client5", "test5", "test5"));
+    clientRepo.save(new Client(null, "client6", "test6", "test6"));
     }
 }

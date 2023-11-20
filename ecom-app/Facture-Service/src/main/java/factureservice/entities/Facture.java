@@ -20,7 +20,7 @@ public class Facture {
     private Long id;
     private Date date;
     @OneToMany(mappedBy = "facture")
-    private Collection<ProduitArticle> listProduits;
+    private List<ProduitArticle> listProduits;
     private Long idClient;
     @Transient
     private Client client;

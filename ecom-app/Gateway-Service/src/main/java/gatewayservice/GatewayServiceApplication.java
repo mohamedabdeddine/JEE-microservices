@@ -17,7 +17,7 @@ public class GatewayServiceApplication {
 	}
 
 
- //Static Conmfiguration
+ //Static Configuration
 
 /*@Bean
 RouteLocator routeLocator(RouteLocatorBuilder builder) {

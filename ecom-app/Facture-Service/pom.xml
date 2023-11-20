@@ -64,7 +64,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!-- lookup parent from repository
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>Produit-Service</artifactId>
@@ -74,7 +74,7 @@
             <groupId>com.example</groupId>
             <artifactId>Client-Service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>net.abdeddine</groupId>
             <artifactId>ecom-app</artifactId>

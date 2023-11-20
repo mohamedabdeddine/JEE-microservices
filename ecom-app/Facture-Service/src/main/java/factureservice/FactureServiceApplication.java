@@ -43,19 +43,22 @@ public class FactureServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Create and save some Facture records during application startup
-		Client client = clientService.findById(Long.valueOf(1L));
-		Facture facture1 = factureRepo.save(new Facture(null, new Date(), null, client.getId(), null));
-	//	List<Produit> produits = new ArrayList<>();
-		PagedModel<Produit> ListeProoduitDB = produitService.pageProduits(0, 3);
-		ListeProoduitDB.forEach(p -> {
-        ProduitArticle produit = new ProduitArticle();
-					produit.setReference(p.getId());
-					produit.setProduit(p);
-					produit.setQuantite(1 + new Random().nextInt(10));
-					produit.setFacture(facture1);
-					produit.setPrix(produit.getQuantite() * p.getPrix());
-					ProduitArticleRepo.save(produit);
-				});
-    }
+		// Get a list of all clients
+		List<Client> clients = clientService.findAllClients();
+		clients.forEach(client -> {
+			Facture facture = factureRepo.save(new Facture(null, new Date(), new ArrayList<>(), client.getId(), null));
+			PagedModel<Produit> productList = produitService.pageProduits(0, 2);
+			productList.forEach(produit -> {
+				ProduitArticle produitArticle = new ProduitArticle();
+				produitArticle.setReference(produit.getId());
+				produitArticle.setProduit(produit);
+				produitArticle.setQuantite(1 + new Random().nextInt(10));
+				produitArticle.setFacture(facture);
+				produitArticle.setPrix(produitArticle.getQuantite() * produit.getPrix());
+				produitArticleRepo.save(produitArticle);
+				facture.getListProduits().add(produitArticle);
+			});
+			factureRepo.save(facture);
+		});
+	}
 }

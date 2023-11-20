@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping ("/clients")
+
 public class ClientController {
     private final ClientRepo clientRepository;
 
@@ -18,6 +20,10 @@ public class ClientController {
     public ClientController(ClientRepo clientRepository) {
         this.clientRepository = clientRepository;
     }
+
+    @GetMapping("/clients")
+    public List<Client> getAllClients() {return clientRepository.findAll();}
+
 
     @GetMapping("/{clientId}")
     public Client getClientById(@PathVariable Long clientId) {

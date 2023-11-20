@@ -29,7 +29,16 @@ public class FactureController {
     }
 
     @GetMapping("/factures")
-    public List<Facture> getAll() {return  factureRepo.findAll();}
+    public List<Facture> getAll() {
+        List<Facture> factures = factureRepo.findAll();
+        factures.forEach(facture -> {
+            facture.setClient(clientService.findById(facture.getIdClient()));
+            facture.getListProduits().forEach(produitArticle -> {
+                Produit p = produitService.findById(produitArticle.getReference());
+                produitArticle.setProduit(p);
+            });
+        });
+        return factures;  }
 
 
     @GetMapping("/factures/{id}")
